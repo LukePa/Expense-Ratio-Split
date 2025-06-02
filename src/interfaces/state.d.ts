@@ -1,13 +1,13 @@
 
 export interface IState {
-    lukeWage: number;
-    daliWage: number;
+    lukeWage?: number;
+    daliWage?: number;
     
-    rent: number;
-    utility: number;
-    wifi: number;
-    water: number;
-    food: number;
+    rent?: number;
+    utility?: number;
+    water?: number;
+    wifi?: number;
+    food?: number;
     
     nonEssentialSubscriptions: ISubscription[];
 }

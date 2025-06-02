@@ -3,20 +3,45 @@ import './App.css'
 import {useEffect, useState} from "react";
 import {getInitialState} from "./helpers/initialState.ts";
 import {saveStateToStorage} from "./helpers/storage.ts";
-import TitledNumberInput from "./components/TitledNumberInput.tsx";
+import TitledMoneyAmountInput from "./components/TitledMoneyAmountInput.tsx";
 
 
 function App() {
     const [enableEdit, setEnableEdit] = useState(false);
-    const [state, setState] = useState(getInitialState())
+    const [state, setState] = useState(getInitialState)
     
     useEffect(() => {
         saveStateToStorage(state)
     }, [state])
     
-    const setLukesWage = (value: number) => {
+    const setLukesWage = (value: number | undefined) => {
         setState({...state, lukeWage: value})
     }
+
+    const setDalisWage = (value: number | undefined) => {
+        setState({...state, daliWage: value})
+    }
+    
+    const setRent = (value: number | undefined) => {
+        setState({...state, rent: value})
+    }
+
+    const setUtility = (value: number | undefined) => {
+        setState({...state, utility: value})
+    }
+    
+    const setWater = (value: number | undefined) => {
+        setState({...state, water: value})
+    }
+
+    const setWifi = (value: number | undefined) => {
+        setState({...state, wifi: value})
+    }
+    
+    const setFood = (value: number | undefined) => {
+        setState({...state, food: value})
+    }
+    
     
     let buttonClass = "rounded-sm cursor-pointer text-white px-5 py-2"
     buttonClass += ` ${enableEdit ? "bg-red-800" : "bg-green-800"}`
@@ -27,12 +52,54 @@ function App() {
                 {enableEdit ? "Lock" : "Enable"} Editting
             </button>
             
-            <div>
-                <TitledNumberInput 
-                    title="Lukes Monthly Wage" 
+            <div className="max-w-50 flex flex-col gap-5 mx-10">
+                <TitledMoneyAmountInput 
+                    title="Luke's Monthly Wage" 
                     value={state.lukeWage} 
                     setValue={setLukesWage} 
                     disabled={!enableEdit} 
+                />
+
+                <TitledMoneyAmountInput
+                    title="Dali's Monthly Wage"
+                    value={state.daliWage}
+                    setValue={setDalisWage}
+                    disabled={!enableEdit}
+                />
+
+                <TitledMoneyAmountInput
+                    title="Rent"
+                    value={state.rent}
+                    setValue={setRent}
+                    disabled={!enableEdit}
+                />
+
+                <TitledMoneyAmountInput
+                    title="Utilities"
+                    value={state.utility}
+                    setValue={setUtility}
+                    disabled={!enableEdit}
+                />
+
+                <TitledMoneyAmountInput
+                    title="Water"
+                    value={state.water}
+                    setValue={setWater}
+                    disabled={!enableEdit}
+                />
+
+                <TitledMoneyAmountInput
+                    title="Wifi"
+                    value={state.wifi}
+                    setValue={setWifi}
+                    disabled={!enableEdit}
+                />
+
+                <TitledMoneyAmountInput
+                    title="Food"
+                    value={state.food}
+                    setValue={setFood}
+                    disabled={!enableEdit}
                 />
             </div>
         </div>

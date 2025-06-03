@@ -4,6 +4,9 @@ import {useEffect, useState} from "react";
 import {getInitialState} from "./helpers/initialState.ts";
 import {saveStateToStorage} from "./helpers/storage.ts";
 import TitledMoneyAmountInput from "./components/TitledMoneyAmountInput.tsx";
+import NonEssentialSubscriptions from "./components/NonEssentialSubscriptions.tsx";
+import type {ISubscription} from "./interfaces/state";
+import OweSection from "./components/OweSection.tsx";
 
 
 function App() {
@@ -42,6 +45,35 @@ function App() {
         setState({...state, food: value})
     }
     
+    const addSubscription = (newSubscription: ISubscription) => {
+        const alreadyHasSubscription = state.nonEssentialSubscriptions.some(sub => {
+            return sub.title === newSubscription.title;
+        })
+        
+        if (!alreadyHasSubscription) {
+            setState({...state, nonEssentialSubscriptions: [...state.nonEssentialSubscriptions, newSubscription]})
+        }
+    }
+    
+    const updateSubscription = (index: number, newVal: number | undefined) => {
+        const newSubscriptions = state.nonEssentialSubscriptions.map((sub, i) => {
+            if (i === index) {
+                return {...sub, cost: newVal};
+            } else {
+                return {...sub}
+            }
+        })
+        
+        setState({...state, nonEssentialSubscriptions: newSubscriptions})
+    }
+    
+    const deleteSubscription = (index: number) => {
+        const newSubscriptions = state.nonEssentialSubscriptions.filter((sub, i) => {
+            return i !== index;
+        })
+
+        setState({...state, nonEssentialSubscriptions: newSubscriptions})
+    }
     
     let buttonClass = "rounded-sm cursor-pointer text-white px-5 py-2"
     buttonClass += ` ${enableEdit ? "bg-red-800" : "bg-green-800"}`
@@ -52,7 +84,9 @@ function App() {
                 {enableEdit ? "Lock" : "Enable"} Editting
             </button>
             
-            <div className="max-w-50 flex flex-col gap-5 mx-10">
+            <OweSection state={state} />
+            
+            <div className="flex flex-col gap-5">
                 <TitledMoneyAmountInput 
                     title="Luke's Monthly Wage" 
                     value={state.lukeWage} 
@@ -102,6 +136,15 @@ function App() {
                     disabled={!enableEdit}
                 />
             </div>
+            
+            
+            <NonEssentialSubscriptions 
+                subscriptions={state.nonEssentialSubscriptions} 
+                addSubscription={addSubscription} 
+                removeSubscription={deleteSubscription} 
+                updateSubscription={updateSubscription} 
+                disabled={!enableEdit} 
+            />
         </div>
     )
 }

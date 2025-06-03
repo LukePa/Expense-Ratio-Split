@@ -25,7 +25,7 @@ export default function TitledMoneyAmountInput({title, value, setValue, disabled
     }
     
     return (
-        <div className="flex flex-col items-stretch">
+        <div className="flex flex-col items-stretch flex-1">
             <span className="font-thin">{title}</span>
             <div className="flex flex-1 gap-2">
                 <span>

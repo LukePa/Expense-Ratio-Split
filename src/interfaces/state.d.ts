@@ -14,5 +14,5 @@ export interface IState {
 
 export interface ISubscription {
     title: string;
-    cost: number;
+    cost?: number;
 } 

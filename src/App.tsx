@@ -8,6 +8,8 @@ import NonEssentialSubscriptions from "./components/NonEssentialSubscriptions.ts
 import type {ISubscription} from "./interfaces/state";
 import OweSection from "./components/OweSection.tsx";
 import Accordion from "./components/Accodion.tsx";
+import IconButton from "./components/IconButton.tsx";
+import {faPencil, faLock} from "@fortawesome/free-solid-svg-icons";
 
 
 function App() {
@@ -76,15 +78,8 @@ function App() {
         setState({...state, nonEssentialSubscriptions: newSubscriptions})
     }
     
-    let buttonClass = "rounded-sm cursor-pointer text-white px-5 py-2"
-    buttonClass += ` ${enableEdit ? "bg-red-800" : "bg-green-800"}`
-    
     return (
         <div className="overflow-y-auto">
-            <button onClick={() => setEnableEdit(!enableEdit)} className={buttonClass}>
-                {enableEdit ? "Lock" : "Enable"} Editting
-            </button>
-            
             <div className="mx-20 flex flex-col gap-5">
                 <OweSection state={state} />
                 
@@ -103,6 +98,13 @@ function App() {
                         disabled={!enableEdit}
                     />
                 </div>
+                
+                <IconButton 
+                    icon={enableEdit ? faLock : faPencil} 
+                    onClick={() => setEnableEdit(!enableEdit)}
+                    className="self-center"
+                    label={enableEdit ? "Lock Editting" : "Enable Editting"}
+                />
                 
                 <Accordion title="Essentials">
                     <div className="flex flex-col gap-5">

@@ -1,5 +1,6 @@
 import {type ReactNode, useState} from "react";
-
+import IconButton from "./IconButton.tsx";
+import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
     title: string;
@@ -23,9 +24,12 @@ export default function Accordion({title, children}: Props) {
     
     return (
         <div className="overflow-hidden">
-            <div className="bg-gray-200 flex justify-between rounded-md p-5">
+            <div 
+                className="bg-gray-200 flex justify-between rounded-md p-5 items-center"
+                onClick={toggleOpen}
+            >
                 <span className="font-thin">{title}</span>
-                <button onClick={toggleOpen}>{open ? "Close" : "Open"}</button>
+                <IconButton icon={open ? faCaretUp : faCaretDown} onClick={toggleOpen} />
             </div>
             
             <div className={accordianContentClass}>

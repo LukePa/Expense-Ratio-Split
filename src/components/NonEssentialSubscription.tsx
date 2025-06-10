@@ -1,5 +1,7 @@
 import type {ISubscription} from "../interfaces/state";
 import TitledMoneyAmountInput from "./TitledMoneyAmountInput.tsx";
+import IconButton from "./IconButton.tsx";
+import {faTrash} from "@fortawesome/free-solid-svg-icons";
 
 
 interface Props {
@@ -11,7 +13,7 @@ interface Props {
 
 export default function NonEssentialSubscription({subscription, updateValue, onDelete, disabled}: Props) {
     
-    let containerClassName = "flex items-stretch flex-1"
+    let containerClassName = "flex items-center flex-1"
     let deleteButtonClassName = "";
     
     if (!disabled) {
@@ -22,7 +24,7 @@ export default function NonEssentialSubscription({subscription, updateValue, onD
     
     return (
         <div className={containerClassName}>
-            <button className={deleteButtonClassName} onClick={onDelete}>x</button>
+            <IconButton icon={faTrash} onClick={onDelete} className={deleteButtonClassName} />
             <TitledMoneyAmountInput 
                 title={subscription.title} 
                 value={subscription.cost} 

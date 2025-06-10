@@ -10,9 +10,11 @@ interface Props {
 export default function Accordion({title, children}: Props) {
     const [open, setOpen] = useState(false);
     
-    let accordianContentClass = "border-3 border-gray-200 rounded-md border-t-1  p-5 bg-gray-100";
+    let accordianContentClass = "rounded-md border-gray-200 bg-gray-100 transition-all ";
     if (!open) {
-        accordianContentClass += "max-h-0 hidden"
+        accordianContentClass += "max-h-0"
+    } else {
+        accordianContentClass += "max-h-100 border-t-1 border-3"
     }
     
     const toggleOpen = () => {
@@ -20,14 +22,16 @@ export default function Accordion({title, children}: Props) {
     }
     
     return (
-        <div>
-            <div className="bg-gray-200 flex justify-around rounded-md">
-                <span>{title}</span>
+        <div className="overflow-hidden">
+            <div className="bg-gray-200 flex justify-between rounded-md p-5">
+                <span className="font-thin">{title}</span>
                 <button onClick={toggleOpen}>{open ? "Close" : "Open"}</button>
             </div>
             
             <div className={accordianContentClass}>
-                {children}
+                <div className="p-5">
+                    {children}
+                </div>
             </div>
         </div>
     )

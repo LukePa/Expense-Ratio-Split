@@ -80,7 +80,7 @@ function App() {
     buttonClass += ` ${enableEdit ? "bg-red-800" : "bg-green-800"}`
     
     return (
-        <div>
+        <div className="overflow-y-auto">
             <button onClick={() => setEnableEdit(!enableEdit)} className={buttonClass}>
                 {enableEdit ? "Lock" : "Enable"} Editting
             </button>

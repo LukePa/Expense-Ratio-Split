@@ -1,5 +1,6 @@
 import type {ISubscription} from "../interfaces/state";
 import NonEssentialSubscription from "./NonEssentialSubscription.tsx";
+import Accordion from "./Accodion.tsx";
 
 
 interface Props {
@@ -22,21 +23,23 @@ export default function NonEssentialSubscriptions({subscriptions, addSubscriptio
     }
     
     return (
-        <div className="flex flex-col items-stretch flex-1">
-            <button className={addButtonClass} onClick={addNewSubscription}>+</button>
-            <div className="flex flex-col gap-5 items-stretch flex-1">
-                {subscriptions.map((subscription, index) => {
-                    return (
-                        <NonEssentialSubscription
-                            subscription={subscription}
-                            onDelete={() => removeSubscription(index)}
-                            disabled={disabled}
-                            updateValue={(val) => updateSubscription(index, val)}
-                        />
-                            
-                    )
-                })}
+        <Accordion title="Non Essential Subscriptions">
+            <div className="flex flex-col items-stretch flex-1">
+                <button className={addButtonClass} onClick={addNewSubscription}>+</button>
+                <div className="flex flex-col gap-5 items-stretch flex-1">
+                    {subscriptions.map((subscription, index) => {
+                        return (
+                            <NonEssentialSubscription
+                                subscription={subscription}
+                                onDelete={() => removeSubscription(index)}
+                                disabled={disabled}
+                                updateValue={(val) => updateSubscription(index, val)}
+                            />
+                                
+                        )
+                    })}
+                </div>
             </div>
-        </div>
+        </Accordion>
     )    
 }

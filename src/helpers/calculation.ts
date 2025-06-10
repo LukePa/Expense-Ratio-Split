@@ -2,8 +2,8 @@ import type {IState} from "../interfaces/state";
 
 
 interface OwedAmounts {
-    luke: number;
-    dali: number;
+    luke: string;
+    dali: string;
 }
 
 export default function calculateOwedAmounts(state: IState): OwedAmounts | undefined {
@@ -14,8 +14,8 @@ export default function calculateOwedAmounts(state: IState): OwedAmounts | undef
     const combinedWage = state.lukeWage + state.daliWage;
     
     return {
-        luke: getIndividualCost(state.lukeWage, combinedWage, totalOutgoing),
-        dali: getIndividualCost(state.daliWage, combinedWage, totalOutgoing),
+        luke: getIndividualCost(state.lukeWage, combinedWage, totalOutgoing).toFixed(2),
+        dali: getIndividualCost(state.daliWage, combinedWage, totalOutgoing).toFixed(2),
     }
 }
 

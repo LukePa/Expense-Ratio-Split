@@ -7,6 +7,7 @@ import TitledMoneyAmountInput from "./components/TitledMoneyAmountInput.tsx";
 import NonEssentialSubscriptions from "./components/NonEssentialSubscriptions.tsx";
 import type {ISubscription} from "./interfaces/state";
 import OweSection from "./components/OweSection.tsx";
+import Accordion from "./components/Accodion.tsx";
 
 
 function App() {
@@ -84,67 +85,74 @@ function App() {
                 {enableEdit ? "Lock" : "Enable"} Editting
             </button>
             
-            <OweSection state={state} />
-            
-            <div className="flex flex-col gap-5">
-                <TitledMoneyAmountInput 
-                    title="Luke's Monthly Wage" 
-                    value={state.lukeWage} 
-                    setValue={setLukesWage} 
+            <div className="mx-20 flex flex-col gap-5">
+                <OweSection state={state} />
+                
+                <div className="flex gap-30 bg-gray-200 p-5 rounded-md">
+                    <TitledMoneyAmountInput 
+                        title="Luke's Monthly Wage" 
+                        value={state.lukeWage} 
+                        setValue={setLukesWage} 
+                        disabled={!enableEdit} 
+                    />
+    
+                    <TitledMoneyAmountInput
+                        title="Dali's Monthly Wage"
+                        value={state.daliWage}
+                        setValue={setDalisWage}
+                        disabled={!enableEdit}
+                    />
+                </div>
+                
+                <Accordion title="Essentials">
+                    <div className="flex flex-col gap-5">
+                        <TitledMoneyAmountInput
+                            title="Rent"
+                            value={state.rent}
+                            setValue={setRent}
+                            disabled={!enableEdit}
+                        />
+
+                        <TitledMoneyAmountInput
+                            title="Utilities"
+                            value={state.utility}
+                            setValue={setUtility}
+                            disabled={!enableEdit}
+                        />
+
+                        <TitledMoneyAmountInput
+                            title="Water"
+                            value={state.water}
+                            setValue={setWater}
+                            disabled={!enableEdit}
+                        />
+
+                        <TitledMoneyAmountInput
+                            title="Wifi"
+                            value={state.wifi}
+                            setValue={setWifi}
+                            disabled={!enableEdit}
+                        />
+
+                        <TitledMoneyAmountInput
+                            title="Food"
+                            value={state.food}
+                            setValue={setFood}
+                            disabled={!enableEdit}
+                        />
+                    </div>
+                </Accordion>
+                
+                
+                
+                <NonEssentialSubscriptions 
+                    subscriptions={state.nonEssentialSubscriptions} 
+                    addSubscription={addSubscription} 
+                    removeSubscription={deleteSubscription} 
+                    updateSubscription={updateSubscription} 
                     disabled={!enableEdit} 
                 />
-
-                <TitledMoneyAmountInput
-                    title="Dali's Monthly Wage"
-                    value={state.daliWage}
-                    setValue={setDalisWage}
-                    disabled={!enableEdit}
-                />
-
-                <TitledMoneyAmountInput
-                    title="Rent"
-                    value={state.rent}
-                    setValue={setRent}
-                    disabled={!enableEdit}
-                />
-
-                <TitledMoneyAmountInput
-                    title="Utilities"
-                    value={state.utility}
-                    setValue={setUtility}
-                    disabled={!enableEdit}
-                />
-
-                <TitledMoneyAmountInput
-                    title="Water"
-                    value={state.water}
-                    setValue={setWater}
-                    disabled={!enableEdit}
-                />
-
-                <TitledMoneyAmountInput
-                    title="Wifi"
-                    value={state.wifi}
-                    setValue={setWifi}
-                    disabled={!enableEdit}
-                />
-
-                <TitledMoneyAmountInput
-                    title="Food"
-                    value={state.food}
-                    setValue={setFood}
-                    disabled={!enableEdit}
-                />
             </div>
-            
-            
-            <NonEssentialSubscriptions 
-                subscriptions={state.nonEssentialSubscriptions} 
-                addSubscription={addSubscription} 
-                removeSubscription={deleteSubscription} 
-                updateSubscription={updateSubscription} 
-                disabled={!enableEdit} 
-            />
         </div>
     )
 }

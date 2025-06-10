@@ -11,9 +11,16 @@ export default function OweSection({state}: Props) {
     
     
     return (
-        <>
-            <p>Luke: {owedAmounts?.luke}</p>
-            <p>Dali: {owedAmounts?.dali}</p>
-        </>
+        <div className="border-solid border-2 border-orange-500 bg-orange-200 flex justify-center gap-x-100 py-5 rounded-md">
+            <div className="flex flex-col items-center">
+                <span className="font-thin">Luke:</span>
+                <span className="font-bold">£{owedAmounts?.luke}
+                </span>
+            </div>
+            <div className="flex flex-col items-center">
+                <span className="font-thin">Dali:</span>
+                <span className="font-bold">£{owedAmounts?.dali}</span>
+            </div>
+        </div>
     )
 }

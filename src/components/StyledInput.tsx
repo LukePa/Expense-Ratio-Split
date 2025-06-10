@@ -14,7 +14,7 @@ export default function StyledInput({value, onChange, type = "text", disabled = 
     if (disabled) {
         inputClass += " border-black/10 bg-gray-50";
     } else {
-        inputClass +=  " border-black"
+        inputClass +=  " border-black bg-white"
     }
     
     return (

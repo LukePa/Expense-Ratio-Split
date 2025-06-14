@@ -11,7 +11,7 @@ export default function OweSection({state}: Props) {
     
     
     return (
-        <div className="border-solid border-2 border-orange-500 bg-orange-200 flex justify-center gap-x-100 py-5 rounded-md">
+        <div className="border-solid border-2 border-orange-500 bg-orange-200 flex flex-wrap justify-center py-5 rounded-md gap-x-20 md:gap-x-100">
             <div className="flex flex-col items-center">
                 <span className="font-thin">Luke:</span>
                 <span className="font-bold">£{owedAmounts?.luke}

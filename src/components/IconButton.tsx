@@ -14,9 +14,14 @@ export default function IconButton({ icon, onClick, className, label }: Props) {
     let buttonClassName = "bg-orange-200 p-2 cursor-pointer border-1 border-orange-500 rounded-sm";
     if (className) buttonClassName += ` ${className}`;
     
+    const onButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.stopPropagation();
+        onClick();
+    }
+    
     return (
         <button 
-            onClick={onClick} 
+            onClick={onButtonClick} 
             className={buttonClassName}
         >
             <div className="flex items-center">

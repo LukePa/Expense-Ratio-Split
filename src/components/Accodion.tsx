@@ -33,7 +33,7 @@ export default function Accordion({title, children}: Props) {
             </div>
             
             <div className={accordianContentClass}>
-                <div className="p-5">
+                <div className="px-2 sm:px-5 py-5">
                     {children}
                 </div>
             </div>

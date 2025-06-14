@@ -3,6 +3,8 @@ import NonEssentialSubscription from "./NonEssentialSubscription.tsx";
 import Accordion from "./Accodion.tsx";
 import IconButton from "./IconButton.tsx";
 import {faAdd} from "@fortawesome/free-solid-svg-icons";
+import ModalSubscriptionAdd from "./ModalSubscriptionAdd.tsx";
+import {useState} from "react";
 
 
 interface Props {
@@ -14,40 +16,51 @@ interface Props {
 }
 
 export default function NonEssentialSubscriptions({subscriptions, addSubscription, removeSubscription, updateSubscription, disabled}: Props) {
+    const [showAddSubscription, setShowAddSubscription] = useState(false);
     
     let addButtonClass = "self-center mt-5"
     if (disabled) {
         addButtonClass += " hidden";
     }
     
-    function addNewSubscription() {
-        addSubscription({title: "TEST", cost: 30})
+    function showAddSubscriptionModal() {
+        setShowAddSubscription(true)
     }
     
+    
     return (
-        <Accordion title="Non Essential Subscriptions">
-            <div className="flex flex-col items-stretch flex-1">
-                <div className="flex flex-col gap-5 items-stretch flex-1">
-                    {subscriptions.map((subscription, index) => {
-                        return (
-                            <NonEssentialSubscription
-                                subscription={subscription}
-                                onDelete={() => removeSubscription(index)}
-                                disabled={disabled}
-                                updateValue={(val) => updateSubscription(index, val)}
-                            />
-                                
-                        )
-                    })}
+        <>
+            <Accordion title="Non Essential Subscriptions">
+                <div className="flex flex-col items-stretch flex-1">
+                    <div className="flex flex-col gap-5 items-stretch flex-1">
+                        {subscriptions.map((subscription, index) => {
+                            return (
+                                <NonEssentialSubscription
+                                    key={subscription.title}
+                                    subscription={subscription}
+                                    onDelete={() => removeSubscription(index)}
+                                    disabled={disabled}
+                                    updateValue={(val) => updateSubscription(index, val)}
+                                />
+                                    
+                            )
+                        })}
+                    </div>
+                    
+                    <IconButton 
+                        icon={faAdd} 
+                        onClick={showAddSubscriptionModal} 
+                        className={addButtonClass} 
+                        label="New"
+                    />
                 </div>
-                
-                <IconButton 
-                    icon={faAdd} 
-                    onClick={addNewSubscription} 
-                    className={addButtonClass} 
-                    label="New"
-                />
-            </div>
-        </Accordion>
+            </Accordion>
+            
+            <ModalSubscriptionAdd 
+                open={showAddSubscription} 
+                setOpen={setShowAddSubscription} 
+                addSubscription={addSubscription} 
+            />
+        </>
     )    
 }

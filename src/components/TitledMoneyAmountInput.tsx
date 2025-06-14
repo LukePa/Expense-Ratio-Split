@@ -1,13 +1,14 @@
-import StyledInput from "./StyledInput.tsx";
+import TitledInput from "./TitledInput.tsx";
 
 interface Props {
     title: string;
     value: number | undefined;
     setValue: (value: number | undefined) => void;
     disabled: boolean;
+    error?: boolean;
 }
 
-export default function TitledMoneyAmountInput({title, value, setValue, disabled}: Props) {
+export default function TitledMoneyAmountInput({title, value, setValue, disabled, error}: Props) {
     
     const inputValue = value === undefined ? "" : value.toString();
     
@@ -25,19 +26,13 @@ export default function TitledMoneyAmountInput({title, value, setValue, disabled
     }
     
     return (
-        <div className="flex flex-col items-stretch flex-1">
-            <span className="font-thin">{title}</span>
-            <div className="flex flex-1 gap-2">
-                <span>
-                    £
-                </span>
-                <StyledInput 
-                    value={inputValue} 
-                    onChange={setNewValue} 
-                    type="number" 
-                    disabled={disabled} 
-                />
-            </div>
-        </div>
+        <TitledInput 
+            title={title} 
+            value={inputValue} 
+            setValue={setNewValue} 
+            disabled={disabled} 
+            type="number"
+            error={error}
+        />
     )
 }

@@ -9,7 +9,7 @@ import type {ISubscription} from "./interfaces/state";
 import OweSection from "./components/OweSection.tsx";
 import Accordion from "./components/Accodion.tsx";
 import IconButton from "./components/IconButton.tsx";
-import {faPencil, faLock} from "@fortawesome/free-solid-svg-icons";
+import {faPencil, faLock, faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
 
 
 function App() {
@@ -78,25 +78,32 @@ function App() {
         setState({...state, nonEssentialSubscriptions: newSubscriptions})
     }
     
+    const exportValues = () => {
+        alert("TODO")
+    }
+    
     return (
-        <div className="overflow-y-auto">
-            <div className="mx-20 flex flex-col gap-5">
+        <div className="overflow-y-auto mb-5">
+            <div className="mx-5 md:mx-20 lg:mx-60 mt-5 flex flex-col gap-5">
                 <OweSection state={state} />
                 
-                <div className="flex gap-30 bg-gray-200 p-5 rounded-md">
-                    <TitledMoneyAmountInput 
-                        title="Luke's Monthly Wage" 
-                        value={state.lukeWage} 
-                        setValue={setLukesWage} 
-                        disabled={!enableEdit} 
-                    />
-    
-                    <TitledMoneyAmountInput
-                        title="Dali's Monthly Wage"
-                        value={state.daliWage}
-                        setValue={setDalisWage}
-                        disabled={!enableEdit}
-                    />
+                <div className="flex gap-x-30 gap-y-5 bg-gray-200 p-5 rounded-md flex-wrap">
+                    <div className="min-w-10 flex justify-center grow-1">
+                        <TitledMoneyAmountInput 
+                            title="Luke's Monthly Wage" 
+                            value={state.lukeWage} 
+                            setValue={setLukesWage} 
+                            disabled={!enableEdit} 
+                        />
+                    </div>
+                    <div className="min-w-5 flex justify-center grow-1">
+                        <TitledMoneyAmountInput
+                            title="Dali's Monthly Wage"
+                            value={state.daliWage}
+                            setValue={setDalisWage}
+                            disabled={!enableEdit}
+                        />
+                    </div>
                 </div>
                 
                 <IconButton 
@@ -145,14 +152,18 @@ function App() {
                     </div>
                 </Accordion>
                 
-                
-                
                 <NonEssentialSubscriptions 
                     subscriptions={state.nonEssentialSubscriptions} 
                     addSubscription={addSubscription} 
                     removeSubscription={deleteSubscription} 
                     updateSubscription={updateSubscription} 
                     disabled={!enableEdit} 
+                />
+                
+                <IconButton 
+                    icon={faArrowUpRightFromSquare} 
+                    onClick={exportValues}
+                    className="self-start"
                 />
             </div>
         </div>

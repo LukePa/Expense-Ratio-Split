@@ -10,6 +10,7 @@ import OweSection from "./components/OweSection.tsx";
 import Accordion from "./components/Accodion.tsx";
 import IconButton from "./components/IconButton.tsx";
 import {faPencil, faLock, faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
+import {stateToUrl} from "./helpers/queryParams.ts";
 
 
 function App() {
@@ -71,7 +72,7 @@ function App() {
     }
     
     const deleteSubscription = (index: number) => {
-        const newSubscriptions = state.nonEssentialSubscriptions.filter((sub, i) => {
+        const newSubscriptions = state.nonEssentialSubscriptions.filter((_sub, i) => {
             return i !== index;
         })
 
@@ -79,7 +80,9 @@ function App() {
     }
     
     const exportValues = () => {
-        alert("TODO")
+        const url = stateToUrl(state);
+        navigator.clipboard.writeText(url);
+        alert("Export url copied to clipboard")
     }
     
     return (

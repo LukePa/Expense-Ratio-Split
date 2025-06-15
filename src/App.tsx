@@ -10,7 +10,6 @@ import OweSection from "./components/OweSection.tsx";
 import Accordion from "./components/Accodion.tsx";
 import IconButton from "./components/IconButton.tsx";
 import {faPencil, faLock, faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
-import {stateToUrl} from "./helpers/queryParams.ts";
 
 
 function App() {

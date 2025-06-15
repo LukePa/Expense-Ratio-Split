@@ -80,9 +80,7 @@ function App() {
     }
     
     const exportValues = () => {
-        const url = stateToUrl(state);
-        navigator.clipboard.writeText(url);
-        alert("Export url copied to clipboard")
+        alert(process.env.NODE_ENV)
     }
     
     return (

@@ -3,8 +3,8 @@ import {getStateFromStorage} from "./storage.ts";
 import {updateStateFromParams} from "./queryParams.ts";
 
 
-export function getInitialState(): IState {
-    const state = getStateFromStorage();
+export async function getInitialState(): Promise<IState> {
+    const state = await getStateFromStorage();
     updateStateFromParams(state)
     return state;
 }

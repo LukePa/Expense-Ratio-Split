@@ -1,11 +1,11 @@
 import type {IState} from "../interfaces/state";
-import {isProduction} from "./environments.ts";
+import {useLocalStorage} from "./environments.ts";
 import {getStateFromLocalStorage, saveStateToLocalStorage} from "./localStorage.ts";
 import {getStateFromApi, saveStateToApi} from "./api.ts";
 
 
 export async function getStateFromStorage(): Promise<IState> {
-    if (isProduction()) {
+    if (!useLocalStorage()) {
         return getStateFromApi();
     } else {
         return getStateFromLocalStorage();
@@ -13,7 +13,7 @@ export async function getStateFromStorage(): Promise<IState> {
 }
 
 export async function saveStateToStorage(state: IState) {
-    if(isProduction()) {
+    if(!useLocalStorage()) {
         saveStateToApi(state);
     } else {
         saveStateToLocalStorage(state);

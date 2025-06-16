@@ -4,7 +4,7 @@ interface Props {
     title: string;
     value: string;
     setValue: (value: string) => void;
-    disabled: boolean;
+    disabled?: boolean;
     type?: string;
     error?: boolean;
 }

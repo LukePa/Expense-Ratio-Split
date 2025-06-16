@@ -1,5 +1,5 @@
 
-
-export function isProduction(): boolean {
-    return process.env.NODE_ENV === 'production';
+export function useLocalStorage(): boolean {
+    return import.meta.env.VITE_USE_LOCAL_STORAGE ?? false;
 }
+

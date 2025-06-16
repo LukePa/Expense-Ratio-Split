@@ -4,7 +4,7 @@ interface Props {
     title: string;
     value: number | undefined;
     setValue: (value: number | undefined) => void;
-    disabled: boolean;
+    disabled?: boolean;
     error?: boolean;
 }
 

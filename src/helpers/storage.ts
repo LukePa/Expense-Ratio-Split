@@ -6,7 +6,7 @@ import {getStateFromApi, saveStateToApi} from "./api.ts";
 
 export async function getStateFromStorage(): Promise<IState> {
     if (!useLocalStorage()) {
-        return getStateFromApi();
+        return await getStateFromApi();
     } else {
         return getStateFromLocalStorage();
     }
@@ -14,7 +14,7 @@ export async function getStateFromStorage(): Promise<IState> {
 
 export async function saveStateToStorage(state: IState) {
     if(!useLocalStorage()) {
-        saveStateToApi(state);
+        await saveStateToApi(state);
     } else {
         saveStateToLocalStorage(state);
     }

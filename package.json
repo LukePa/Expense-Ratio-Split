@@ -1,6 +1,5 @@
 {
-  "name": "expense-ratio-split",
-  "private": true,
+  "name": "lukepa-expense-ratio-split",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
@@ -9,6 +8,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "files": ["dist"],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",

@@ -2,10 +2,9 @@
 
 
 A small React project created to run on a Raspberry Pi home server to calculate how much both me and my partner need to
-put into our shared bank account each month.
+put into our shared bank account each month. It is served by and his its state managed by a simple node js server.
+Server repo link: https://github.com/LukePa/Expense-ratio-split-server-and-backend
 
 
-In reality, an HTML templating system on a node server which gets its data from a file would be a better technical decision
-as we could have shared state without the need of an export url.
 
-But... I'm mainly doing this as an excuse to practice using React, so here we are :)
+
